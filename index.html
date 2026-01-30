@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover the best AI tools for writing, images, videos, coding, productivity, and marketing.">
+  <title>AI Tools Directory</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --card-bg: #f9f9f9;
+      --accent: #007bff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --card-bg: #1e1e1e;
+      --accent: #4dabf7;
+      --shadow: rgba(255, 255, 255, 0.1);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 5px var(--shadow);
+    }
+    header h1 {
+      font-size: 1.5rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    nav a:hover, nav a.active {
+      color: var(--accent);
+    }
+    #dark-mode-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .filters input, .filters select {
+      padding: 0.5rem;
+      border: 1px solid var(--text-color);
+      border-radius: 4px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .tool-card {
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .tool-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+    .tool-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    .tool-card p {
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .tool-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+    }
+    .badge {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      margin-left: 0.5rem;
+    }
+    .tool-card a {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .tool-card a:hover {
+      background-color: #0056b3;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--text-color);
+      border-radius: 4px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    form button {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    form button:hover {
+      background-color: #0056b3;
+    }
+    .categories-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .category-card {
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .category-card:hover {
+      background-color: var(--accent);
+      color: white;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--card-bg);
+      margin-top: 2rem;
+    }
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .filters {
+        flex-direction: column;
+      }
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI Tools Directory</h1>
+    <nav>
+      <ul>
+        <li><a data-page="home">Home</a></li>
+        <li><a data-page="browse">Browse Tools</a></li>
+        <li><a data-page="categories">Categories</a></li>
+        <li><a data-page="submit">Submit a Tool</a></li>
+        <li><a data-page="about">About</a></li>
+        <li><a data-page="contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button id="dark-mode-toggle">🌙</button>
+  </header>
+  <main>
+    <!-- Home Page -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <h2>Welcome to the AI Tools Directory</h2>
+        <p>Explore a curated list of AI tools to boost your productivity.</p>
+      </div>
+      <h2>Featured Tools</h2>
+      <div class="tools-grid" id="featured-grid">
+        <!-- Featured tools rendered by JS -->
+      </div>
+    </section>
+    <!-- Browse Tools Page -->
+    <section id="browse" class="page">
+      <h2>Browse AI Tools</h2>
+      <div class="filters">
+        <input type="text" id="search" placeholder="Search tools...">
+        <select id="category-filter">
+          <option value="">All Categories</option>
+          <option value="Writing">Writing</option>
+          <option value="Image">Image</option>
+          <option value="Video">Video</option>
+          <option value="Coding">Coding</option>
+          <option value="Productivity">Productivity</option>
+          <option value="Marketing">Marketing</option>
+        </select>
+        <select id="pricing-filter">
+          <option value="">All Pricing</option>
+          <option value="Free">Free</option>
+          <option value="Freemium">Freemium</option>
+          <option value="Paid">Paid</option>
+        </select>
+      </div>
+      <div class="tools-grid" id="tools-grid"></div>
+    </section>
+    <!-- Categories Page -->
+    <section id="categories" class="page">
+      <h2>Categories</h2>
+      <div class="categories-list">
+        <div class="category-card" data-category="Writing">Writing</div>
+        <div class="category-card" data-category="Image">Image</div>
+        <div class="category-card" data-category="Video">Video</div>
+        <div class="category-card" data-category="Coding">Coding</div>
+        <div class="category-card" data-category="Productivity">Productivity</div>
+        <div class="category-card" data-category="Marketing">Marketing</div>
+      </div>
+    </section>
+    <!-- Submit a Tool Page -->
+    <section id="submit" class="page">
+      <h2>Submit a Tool</h2>
+      <form id="submit-form">
+        <label for="tool-name">Tool Name:</label>
+        <input type="text" id="tool-name" required>
+        <label for="tool-desc">Description:</label>
+        <textarea id="tool-desc" required></textarea>
+        <label for="tool-category">Category:</label>
+        <select id="tool-category" required>
+          <option value="Writing">Writing</option>
+          <option value="Image">Image</option>
+          <option value="Video">Video</option>
+          <option value="Coding">Coding</option>
+          <option value="Productivity">Productivity</option>
+          <option value="Marketing">Marketing</option>
+        </select>
+        <label for="tool-pricing">Pricing:</label>
+        <select id="tool-pricing" required>
+          <option value="Free">Free</option>
+          <option value="Freemium">Freemium</option>
+          <option value="Paid">Paid</option>
+        </select>
+        <label for="tool-url">URL:</label>
+        <input type="url" id="tool-url" required>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+    <!-- About Page -->
+    <section id="about" class="page">
+      <h2>About</h2>
+      <p>This directory lists useful AI tools across various categories. Built with HTML, CSS, and JavaScript.</p>
+    </section>
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+      <h2>Contact</h2>
+      <p>Email: info@aitoolsdirectory.com</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 AI Tools Directory. All rights reserved.</p>
+  </footer>
+  <script>
+    // Static tool data
+    const tools = [
+      { name: "ChatGPT", desc: "AI-powered chatbot for natural language conversations and writing assistance.", category: "Writing", pricing: "Freemium", url: "https://chat.openai.com", featured: true, new: false },
+      { name: "DALL·E", desc: "Generates images from text descriptions using AI.", category: "Image", pricing: "Paid", url: "https://openai.com/dall-e-2", featured: false, new: true },
+      { name: "GitHub Copilot", desc: "AI code completion tool for developers.", category: "Coding", pricing: "Freemium", url: "https://github.com/features/copilot", featured: true, new: false },
+      { name: "Canva Magic Studio", desc: "AI tools for design, including image generation and editing.", category: "Image", pricing: "Freemium", url: "https://www.canva.com/magic-studio", featured: false, new: true },
+      { name: "Jasper", desc: "AI writing assistant for marketing and content creation.", category: "Marketing", pricing: "Paid", url: "https://www.jasper.ai", featured: false, new: false },
+      { name: "Runway ML", desc: "AI tools for video editing and generation.", category: "Video", pricing: "Freemium", url: "https://runwayml.com", featured: true, new: false },
+      { name: "Notion AI", desc: "AI-powered productivity tool for notes and organization.", category: "Productivity", pricing: "Freemium", url: "https://www.notion.so/product/ai", featured: false, new: true }
+    ];
+
+    // Navigation
+    const navLinks = document.querySelectorAll('nav a');
+    const pages = document.querySelectorAll('.page');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        pages.forEach(page => page.classList.remove('active'));
+        document.getElementById(link.dataset.page).classList.add('active');
+        if (link.dataset.page === 'browse') renderTools(tools);
+      });
+    });
+
+    // Dark mode toggle
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+
+    // Render tools function
+    function renderTools(toolsToRender, gridId = 'tools-grid') {
+      const grid = document.getElementById(gridId);
+      grid.innerHTML = '';
+      toolsToRender.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.innerHTML = `
+          <h3>${tool.name}${tool.new ? '<span class="badge">New</span>' : ''}${tool.featured ? '<span class="badge">Featured</span>' : ''}</h3>
+          <p>${tool.desc}</p>
+          <div class="tool-meta">
+            <span>Category: ${tool.category}</span>
+            <span>Pricing: ${tool.pricing}</span>
+          </div>
+          <a href="${tool.url}" target="_blank">Visit</a>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Initial render for home featured
+    const featuredTools = tools.filter(t => t.featured);
+    renderTools(featuredTools, 'featured-grid');
+
+    // Search and filters
+    const searchInput = document.getElementById('search');
+    const categoryFilter = document.getElementById('category-filter');
+    const pricingFilter = document.getElementById('pricing-filter');
+    function filterTools() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categoryFilter.value;
+      const selectedPricing = pricingFilter.value;
+      const filtered = tools.filter(tool => {
+        return (tool.name.toLowerCase().includes(searchTerm) || tool.desc.toLowerCase().includes(searchTerm)) &&
+               (selectedCategory === '' || tool.category === selectedCategory) &&
+               (selectedPricing === '' || tool.pricing === selectedPricing);
+      });
+      renderTools(filtered);
+    }
+    searchInput.addEventListener('input', filterTools);
+    categoryFilter.addEventListener('change', filterTools);
+    pricingFilter.addEventListener('change', filterTools);
+
+    // Category cards click to filter browse
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        document.querySelector('[data-page="browse"]').classList.add('active');
+        pages.forEach(page => page.classList.remove('active'));
+        document.getElementById('browse').classList.add('active');
+        categoryFilter.value = card.dataset.category;
+        filterTools();
+      });
+    });
+
+    // Form submission
+    const form = document.getElementById('submit-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you! Your tool submission has been received (static demo).');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
